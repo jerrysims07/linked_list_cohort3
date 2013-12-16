@@ -107,6 +107,9 @@ class LinkedList
 	end
 
 	def indexOf(payloadIn)
+		if @first_item == nil
+			return @first_item
+		end
 		if(@first_item.payload == payloadIn)
 			return 0
 		else
@@ -115,6 +118,9 @@ class LinkedList
 			while curr_item.payload != payloadIn
 				curr_item = curr_item.next_list_item
 				index += 1
+				if !curr_item 
+					return nil
+				end
 			end
 			index
 		end
