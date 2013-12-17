@@ -13,7 +13,7 @@ class LinkedListItem
 	end
 
 	def next_list_item=(nxt)
-		if nxt == self
+		if nxt === self
 			raise ArgumentError, "linked_list_item may not point to self"
 		else
 			@next_list_item = nxt

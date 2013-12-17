@@ -11,7 +11,7 @@ class LinkedList
 	def add_item(payload)
 		prev_item = @first_item
 		if(prev_item)
-			while !prev_item.last?
+			until prev_item.last?
 				prev_item = prev_item.next_list_item
 			end
 			prev_item.next_list_item = LinkedListItem.new(payload)
@@ -40,7 +40,7 @@ class LinkedList
 		size = 0
 		if(prev_item)
 			size =1
-			while !prev_item.last?
+			until prev_item.last?
 				prev_item = prev_item.next_list_item
 				size+=1
 			end
@@ -51,7 +51,7 @@ class LinkedList
 	def last
 		if @first_item
 			last = @first_item
-			while !last.last?
+			until last.last?
 				last = last.next_list_item
 			end
 			return last.payload
@@ -124,5 +124,56 @@ class LinkedList
 			end
 			index
 		end
+	end
+
+	def sorted?
+		if self.size <= 1
+			return true
+		else
+			item1 = @first_item
+			item2 = @first_item.next_list_item
+			until item2.nil?
+				if(item1 > item2) 
+					return false
+				else
+					item1 = item2
+					true
+					item2 = item2.next_list_item
+				end  
+			end
+			return true
+		end
+	end
+
+	def sort
+		tempList = LinkedList.new()
+		if self.size <= 1
+			return self
+		else
+puts "\nin else"
+			until self.sorted?
+				item1 = @first_item
+				item2 = @first_item.next_list_item
+				if(item2 < item1)
+					temp = item1.payload
+					item1.payload = item2.payload
+					item2.payload = temp
+				end
+				until item2.nil? do
+					if(item2 < item1)
+						temp = item1.payload
+						item1.payload = item2.payload
+						item2.payload = temp
+					end
+					item1 = item2
+					item2 = item2.next_list_item
+					puts self.to_s
+				end
+			end
+			return self
+		end
+	end
+
+	def swap_with_next(index)
 	end
 end
