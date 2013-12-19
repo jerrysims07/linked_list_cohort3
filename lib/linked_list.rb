@@ -175,5 +175,20 @@ puts "\nin else"
 	end
 
 	def swap_with_next(index)
+		if(index == 0)
+			temp = @first_item.payload
+			@first_item.payload = @first_item.next_list_item.payload
+			@first_item.next_list_item.payload = temp
+		elsif index >= ((self.size) -1)
+			raise IndexError, "There is nothing to swap with"
+		else
+			item = @first_item
+			index.times do
+				item = item.next_list_item
+			end
+			temp = item.payload
+			item.payload = item.next_list_item.payload
+			item.next_list_item.payload = temp
+		end
 	end
 end
